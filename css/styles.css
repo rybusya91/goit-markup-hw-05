@@ -18,6 +18,8 @@
 
   --items: 4;
   --linear-gradient: rgba(47, 48, 58, 0.4);
+
+  --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 img {
   display: block;
@@ -138,11 +140,12 @@ ul {
 .contact:focus {
   color: var(--accent-color);
 }
-.header-link-current-butt::after {
+/* синяя полоска вверху */
+.header-link-current::after {
   content: '';
   display: block;
-  position: inherit;
-  bottom: -28px;
+  position: absolute;
+  bottom: -2px;
   left: 0;
   width: 100%;
   height: 4px;
@@ -151,6 +154,7 @@ ul {
 }
 .header-link-current,
 .header-link-current {
+  position: relative;
   font-weight: 500;
   font-size: 14px;
   line-height: calc(16 / 14);
@@ -506,6 +510,85 @@ ul {
   border-color: var(--accent-color);
   color: var(--accent-color);
 }
+/* чем мы занимаемся позиционирование */
+.thumb {
+  position: relative;
+ 
+}
+.thumb > .label {
+  position: absolute;
+  top: 275px;
+  right: 50px;
+  width: 370px;
+  margin: -50px;
+  padding: 8px 16px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 56px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background-color: rgba(47, 48, 58, 0.8);
+  color: #fff;
+}
+/* /* выезжающий текст на карточках */
+
+/* .overlay-text::before {
+  padding: 63px 24px;
+  font-weight: 400px;
+  font-size: 18px;
+  line-height: 1.55;
+  letter-spacing: 0.3em;
+ background: rgba(33, 150, 243, 0.9);
+  color: #ffffff;
+} */
+/* .project-element {
+  position: relative;
+  overflow: hidden; */
+*/ .overlay-text {
+  display: inline-block;
+  content: '';
+  position: relative;
+  overflow: hidden;
+}
+
+/*  width: 370px;
+  height: 294px;
+  left: 215px;
+  top: 260px; 
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: rgba(33, 150, 243, 0.9);
+  transform: translateY(-100%);
+  
+}*/
+.projekt-overlay:hover {
+  width: 100%;
+  height: 294px;
+  left: 100%;
+  top: 100%;
+
+  transform: translateY(-80%);
+  transition: transform, 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: rgba(33, 150, 243, 0.9);
+}
+
+.projekt-overlay {
+  padding: 63px 24px;
+  font-weight: 400px;
+  font-size: 18px;
+  line-height: 1.55;
+  letter-spacing: 0.3em;
+  background: rgba(33, 150, 243, 0.9);
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
 /* footer */
 .footer-logo {
@@ -638,4 +721,47 @@ ul {
 }
 .social-link-member {
   color: #afb1b8;
+}
+/* модальное окно */
+.backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.2);
+  transition: visibility var(--animation), opacity var(--animation);
+}
+.modal {
+  position: absolute;
+  width: 528px;
+  height: 581px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+
+  background: #ffffff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transition: transform var(--animation), opacity var(--animation);
+}
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 6px;
+  background-color: var(--text-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  transition: fill var(--animation);
+}
+.modal-close-icon {
+  min-width: 18px;
+  height: 18px;
 }
